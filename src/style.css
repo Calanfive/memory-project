@@ -1,3 +1,27 @@
-.div{
+body{
+  margin: 0;
+  height: 100%;
+}
+
+#barre-sup{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: rgb(217,217,218,255);
+  border: black solid 2px;
+}
+
+#start_button{
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 160px 0px 160px 0px
+}
+
+#init-button{
+  width: 400px;
   border: black solid 1px;
+  border-radius: 100px;
 }
