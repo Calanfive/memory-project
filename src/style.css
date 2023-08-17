@@ -1,5 +1,5 @@
 body{
-  margin: 0;
+  margin: 0px;
   height: 100%;
 }
 
@@ -24,4 +24,19 @@ body{
   width: 400px;
   border: black solid 1px;
   border-radius: 100px;
+}
+
+.section_tiles{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 640px;
+  margin: auto;
+}
+
+.tile{
+  width: 17%;
+  aspect-ratio: 1;
+  margin: 2%;
 }

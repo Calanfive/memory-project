@@ -14,11 +14,16 @@ function init(){
     const tiles = new Array(16).fill('').map( (_, i) => {
         const tile = document.createElement("div")
         tile.setAttribute("class", "tile")
-        tile.style.width = "50px"
-        tile.style.height = "50px"
         tile.style.backgroundColor = colors[Math.floor(i/2)]
         return tile
     })
+
+    const parent = document.createElement('div')
+    parent.classList.add('section_tiles')
+
     const body = document.querySelector("body") as HTMLBodyElement
-    tiles.forEach( tile => body.appendChild(tile))
+    body.appendChild(parent)
+    tiles.forEach( tile => parent.appendChild(tile))
+
+    tiles.sort( () => Math.random() - 0.5)
 }
