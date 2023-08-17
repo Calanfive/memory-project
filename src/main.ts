@@ -1,6 +1,6 @@
 const btnStart = document.querySelector("#start_button") as HTMLButtonElement;
 
-let cpt = 0;
+let lastClickedColor = "";
 
 btnStart.addEventListener("click", () => {
     init();
@@ -25,14 +25,24 @@ function init(){
     body.appendChild(parent)
     tiles.forEach( tile => parent.appendChild(tile))
 
+    let nodeList = document.querySelectorAll(".tile");
+    let elements = Array.from(nodeList) as HTMLDivElement[];
+    elements.forEach( (element) => {
+        element.addEventListener("click", () => {
+            console.log("tata", lastClickedColor)
+            lastClickedColor = element.style.backgroundColor
+            console.log(element.style.backgroundColor)
+
+            if (lastClickedColor === "blue") {
+                console.log("same");
+                
+            }
+
+            else if (lastClickedColor != "blue" )
+                console.log("error");
+
+        })
+    })
+
     tiles.sort( () => Math.random() - 0.5)
 }
-
-let nodeList = document.querySelectorAll(".tile");
-let elements = Array.from(nodeList) as HTMLDivElement[];
-elements.forEach( (element) => {
-    element.addEventListener("click", () => {
-        console.log("tata")
-        console.log(element.style.backgroundColor)
-    })
-})
