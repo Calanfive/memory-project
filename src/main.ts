@@ -27,3 +27,12 @@ function init(){
 
     tiles.sort( () => Math.random() - 0.5)
 }
+
+let nodeList = document.querySelectorAll(".tile");
+let elements = Array.from(nodeList) as HTMLDivElement[];
+elements.forEach( (element) => {
+    element.addEventListener("click", () => {
+        console.log("tata")
+        console.log(element.style.backgroundColor)
+    })
+})
