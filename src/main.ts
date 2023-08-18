@@ -1,6 +1,7 @@
 const btnStart = document.querySelector("#start_button") as HTMLButtonElement;
 
 let lastClickedColor = "";
+let lastClicked: HTMLDivElement;
 
 btnStart.addEventListener("click", () => {
     init();
@@ -29,28 +30,42 @@ function init(){
     tiles.sort( () => Math.random() - 0.5)
     tiles.forEach( tile => parent.appendChild(tile))
 
+    //création de variable
     let nodeList = document.querySelectorAll(".tile");
     let elements = Array.from(nodeList) as HTMLDivElement[];
-    elements.forEach( (element) => {
-        element.addEventListener("click", () => {
+    elements.forEach( (carte) => {
+        //pour chaque évenement sur la carte
+        carte.addEventListener("click", () => {
             console.log("tata", lastClickedColor)
-            console.log(element.style.backgroundColor)
+            console.log(carte.getAttribute("color"))
             
+            //si la constante est nulle, la classe cachee est retirée pour laisser place à la couleur
             if (lastClickedColor === "") {
                 console.log("let's play");
-                element.classList.remove("cachee")
-                lastClickedColor = element.style.backgroundColor
+                carte.classList.remove("cachee");
+                lastClickedColor = carte.getAttribute("color");
+                lastClicked = carte;
             }
             
-            else if (lastClickedColor != element.style.backgroundColor){
+            //si les couleurs sont différentes, la classe switch après une seconde
+            else if (lastClicked.getAttribute("color") != carte.style.backgroundColor){
                 console.log("error");
-                lastClickedColor = ""
-            }
-            else if (lastClickedColor === element.style.backgroundColor) {
+                carte.classList.toggle("cachee");
+                setTimeout(() =>  { 
+                    carte.classList.toggle("cachee")
+                    lastClicked.classList.toggle("cachee");
+                }, 1000);
+                lastClickedColor= "";    
+                }
+            
+            // si les couleurs sont identiques
+            else if (lastClickedColor === carte.style.backgroundColor) {
                 console.log("win");  
-                lastClickedColor = ""  
+                carte.classList.toggle("Trouvee");
+                lastClicked.classList.toggle("Trouvee");
+                lastClickedColor = "";
             }
-        
+        //ajouter un compteur : 8 paires = jeu terminé
         })
     })
 }
