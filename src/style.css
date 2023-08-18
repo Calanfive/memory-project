@@ -45,14 +45,39 @@ body{
 
 
 .red {
-  background-color: red;
+  background-color: red
 }
 
 .blue {
-  background-color: rgb(8, 0, 255);
+  background-color: #00f
 }
 
-.cache {
+.green {
+  background-color: #0f0
+}
+
+.yellow {
+  background-color: #ff0
+}
+
+.orange {
+  background-color: #f90
+}
+
+.purple {
+  background-color: #90f
+}
+
+.pink {
+  background-color: #f5f
+}
+
+.brown {
+  background-color: brown
+}
+
+
+.cachee {
   background-color: lightgrey;
 }
 

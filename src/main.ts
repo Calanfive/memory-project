@@ -16,8 +16,8 @@ function init(){
         tile.classList.add("tile")
         tile.setAttribute("color",colors[Math.floor(i/2)] )
         tile.classList.add("cachee")
-        // tile.classList.toggle( colors[Math.floor(i/2)])
-        tile.style.backgroundColor = colors[Math.floor(i/2)]
+        tile.classList.toggle( colors[Math.floor(i/2)])
+ 
         return tile
     })
 
