@@ -13,7 +13,10 @@ function init(){
 
     const tiles = new Array(16).fill('').map( (_, i) => {
         const tile = document.createElement("div")
-        tile.setAttribute("class", "tile")
+        tile.classList.add("tile")
+        tile.setAttribute("color",colors[Math.floor(i/2)] )
+        tile.classList.add("cachee")
+        // tile.classList.toggle( colors[Math.floor(i/2)])
         tile.style.backgroundColor = colors[Math.floor(i/2)]
         return tile
     })
@@ -23,6 +26,7 @@ function init(){
 
     const body = document.querySelector("body") as HTMLBodyElement
     body.appendChild(parent)
+    tiles.sort( () => Math.random() - 0.5)
     tiles.forEach( tile => parent.appendChild(tile))
 
     let nodeList = document.querySelectorAll(".tile");
@@ -30,19 +34,23 @@ function init(){
     elements.forEach( (element) => {
         element.addEventListener("click", () => {
             console.log("tata", lastClickedColor)
-            lastClickedColor = element.style.backgroundColor
             console.log(element.style.backgroundColor)
-
-            if (lastClickedColor === "blue") {
-                console.log("same");
-                
+            
+            if (lastClickedColor === "") {
+                console.log("let's play");
+                element.classList.remove("cachee")
+                lastClickedColor = element.style.backgroundColor
             }
-
-            else if (lastClickedColor != "blue" )
+            
+            else if (lastClickedColor != element.style.backgroundColor){
                 console.log("error");
-
+                lastClickedColor = ""
+            }
+            else if (lastClickedColor === element.style.backgroundColor) {
+                console.log("win");  
+                lastClickedColor = ""  
+            }
+        
         })
     })
-
-    tiles.sort( () => Math.random() - 0.5)
 }
