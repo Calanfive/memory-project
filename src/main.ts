@@ -48,7 +48,7 @@ function init(){
             }
             
             //si les couleurs sont différentes, la classe switch après une seconde
-            else if (lastClicked.getAttribute("color") != carte.style.backgroundColor){
+            else if (lastClicked.getAttribute("color") != carte.getAttribute("color")){
                 console.log("error");
                 carte.classList.toggle("cachee");
                 setTimeout(() =>  { 
@@ -59,10 +59,12 @@ function init(){
                 }
             
             // si les couleurs sont identiques
-            else if (lastClickedColor === carte.style.backgroundColor) {
-                console.log("win");  
-                carte.classList.toggle("Trouvee");
-                lastClicked.classList.toggle("Trouvee");
+            else if (lastClicked.getAttribute("color")=== carte.getAttribute("color")) {
+                console.log("win"); 
+                carte.classList.remove("cachee");
+                carte.classList.add("trouvee");
+                lastClicked.classList.add("trouvee");
+                lastClicked.classList.remove("cachee");
                 lastClickedColor = "";
             }
         //ajouter un compteur : 8 paires = jeu terminé
