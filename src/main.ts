@@ -1,7 +1,8 @@
 const btnStart = document.querySelector("#start_button") as HTMLButtonElement;
-
+let compteur = 0
 let lastClickedColor = "";
 let lastClicked: HTMLDivElement;
+const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
 
 btnStart.addEventListener("click", () => {
     init();
@@ -10,16 +11,24 @@ btnStart.addEventListener("click", () => {
 function init(){
     console.log('start')
     btnStart.remove();
-    const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
 
-    const tiles = new Array(16).fill('').map( (_, i) => {
+    let tiles: HTMLDivElement[] = []
+    for (let i = 0; i < 16; i++) {
         const tile = document.createElement("div")
         tile.classList.add("tile")
         tile.setAttribute("color",colors[Math.floor(i/2)] )
         tile.classList.add("cachee")
-        tile.classList.toggle( colors[Math.floor(i/2)])
-        return tile
-    })
+        tile.classList.add(colors[Math.floor(i/2)])
+        tiles.push(tile)        
+    }
+    // const tiles = new Array(16).fill('').map( (_, i) => {
+    //     const tile = document.createElement("div")
+    //     tile.classList.add("tile")
+    //     tile.setAttribute("color",colors[Math.floor(i/2)] )
+    //     tile.classList.add("cachee")
+    //     tile.classList.add(colors[Math.floor(i/2)])
+    //     return tile
+    // })
 
     const parent = document.createElement('div')
     parent.classList.add('section_tiles')
@@ -31,6 +40,7 @@ function init(){
 
     let nodeList = document.querySelectorAll(".tile");//création de variable
     let elements = Array.from(nodeList) as HTMLDivElement[]; //jsp ce que c'est Array.from §
+    
     elements.forEach( (carte) => {
         
         carte.addEventListener("click", () => {//pour chaque action sur une carte
@@ -40,9 +50,9 @@ function init(){
             carte.classList.toggle("cachee")
             carte.classList.add("tourner")
 
+            let selection = document.querySelectorAll(".tourner")
+            let e = Array.from(selection) as HTMLDivElement[]; //jsp ce que c'est Array.from §
 
-
-            let e = document.getElementsByClassName("tourner")
             if(e.length === 2) {
                 if (e[0].getAttribute("color") === e[1].getAttribute("color")) { //si les deux tiles son égale elles prennent la classe paire
                     console.log("bien jouée");
@@ -56,27 +66,33 @@ function init(){
                         e[0].classList.replace("tourner","cachee")
                     }, 1000);
                 }
-
-                // else if(e.length > 2) { //demande a thoma pour ce problème et un petit rapel sur les if/else §
-            //         console.log("fifi")
-            //    }
             }
-            let i = document.getElementsByClassName("paire") //le compteur pour savoir si t'as toutes les paires
+
+            let selection_win = document.querySelectorAll(".paire")//le compteur pour savoir si t'as toutes les paires
+            let i = Array.from(selection_win) as HTMLDivElement[]; //jsp ce que c'est Array.from §
+
             if (i.length === 16) {//problème avec le nombre de tiles (16) §
                 parent.remove();
+                compteur++
+                const btn_reco = document.createElement("button") //système du bouton recommencer
+                btn_reco.innerText = "recommencer"
+                btn_reco.addEventListener("click", () => {
+                    btn_reco.remove();
+                    compteur_nbr.remove();
+                    init();
+                });
                 document.body.appendChild(btn_reco)
+                let compteur_nbr = document.createElement("counter")
+                compteur_nbr.innerText = compteur.toString()               
+                document.body.appendChild(compteur_nbr)
                 console.log("gagnée")
             }
         })
     })
 }
 
-const btn_reco = document.createElement("button") //système du bouton recommencer
-btn_reco.innerText = "recommencer"
-btn_reco.addEventListener("click", () => {
-    btn_reco.remove();
-    init();
-});
+
+
 
 
             //si la constante est nulle, la classe cachee est retirée pour laisser place à la couleur
