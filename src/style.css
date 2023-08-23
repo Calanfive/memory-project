@@ -1,7 +1,9 @@
 body{
   margin: 0px;
   height: 100%;
+  width: 100%;
   overflow: hidden;
+  background-color: #C3CAFF;
 }
 
 #barre-sup{
@@ -9,8 +11,14 @@ body{
   justify-content: center;
   align-items: center;
   height: 100px;
-  background-color: rgb(217,217,218,255);
+  background-color: #4956BC;
   border: black solid 2px;
+}
+
+h1{
+  color: white;
+  font-family: impact, fantasy;
+  font-size: 120px;
 }
 
 #start_button{
@@ -23,8 +31,12 @@ body{
 
 #init-button{
   width: 400px;
-  border: black solid 1px;
+  border: #4956BC solid 10px;
   border-radius: 100px;
+  background-color: white;
+  font-family: impact, fantasy;
+  font-size: 75px;
+  color: #4956BC;
 }
 
 .section_tiles{
@@ -41,8 +53,6 @@ body{
   aspect-ratio: 1;
   margin: 2%;
 }
-
-
 
 .red {
   background-color: red
