@@ -1,5 +1,6 @@
 const btnStart = document.querySelector("#start_button") as HTMLButtonElement;
-let compteur = 0
+let compteur_partie = 0
+let compteur_coup = 0
 let lastClickedColor = "";
 let lastClicked: HTMLDivElement;
 const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
@@ -56,14 +57,16 @@ function init(){
             if(e.length === 2) {
                 if (e[0].getAttribute("color") === e[1].getAttribute("color")) { //si les deux tiles son égale elles prennent la classe paire
                     console.log("bien jouée");
-                e[1].classList.replace("tourner","paire"); 
-                e[0].classList.replace("tourner","paire");  
+                    e[1].classList.replace("tourner","paire"); 
+                    e[0].classList.replace("tourner","paire"); 
+                    compteur_coup++
                 }
                 else{
                     console.log("perdu") //si les deux tiles ne sont pas égaux alors elles redeviennent cachée 
                     setTimeout(() => {
                         e[1].classList.replace("tourner","cachee")  
                         e[0].classList.replace("tourner","cachee")
+                        compteur_coup++
                     }, 1000);
                 }
             }
@@ -73,19 +76,25 @@ function init(){
 
             if (i.length === 16) {//problème avec le nombre de tiles (16) §
                 parent.remove();
-                compteur++
+                compteur_partie++
                 const btn_reco = document.createElement("button") //système du bouton recommencer
                 btn_reco.innerText = "recommencer"
                 btn_reco.addEventListener("click", () => {
                     btn_reco.remove();
-                    compteur_nbr.remove();
+                    compteur_nbr_coup.remove();
+                    compteur_coup = 0
+                    compteur_partie_nbr.remove();
                     init();
                 });
                 document.body.appendChild(btn_reco)
-                let compteur_nbr = document.createElement("counter")
-                compteur_nbr.innerText = compteur.toString()               
-                document.body.appendChild(compteur_nbr)
+                let compteur_partie_nbr = document.createElement("counter")
+                compteur_partie_nbr.innerText = compteur_partie.toString()               
+                document.body.appendChild(compteur_partie_nbr)
                 console.log("gagnée")
+
+                let compteur_nbr_coup = document.createElement("counter")
+                compteur_nbr_coup.innerText = " Votre nombre de coups-" + compteur_coup.toString()
+                document.body.appendChild(compteur_nbr_coup)
             }
         })
     })
