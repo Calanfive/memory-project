@@ -78,7 +78,8 @@ function init(){
                 parent.remove();
                 compteur_partie++
                 const btn_reco = document.createElement("button") //système du bouton recommencer
-                btn_reco.innerText = "recommencer"
+                btn_reco.innerText = "PLAY AGAIN"
+                btn_reco.classList.add('btn_reco_class')
                 btn_reco.addEventListener("click", () => {
                     btn_reco.remove();
                     compteur_nbr_coup.remove();

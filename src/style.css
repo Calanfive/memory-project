@@ -86,8 +86,14 @@ h1{
   background-color: brown
 }
 
-
 .cachee {
   background-color: lightgrey;
 }
 
+#btn_reco_class {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 160px 0px 160px 0px
+}
