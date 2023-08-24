@@ -85,17 +85,29 @@ function init(){
                     compteur_nbr_coup.remove();
                     compteur_coup = 0
                     compteur_partie_nbr.remove();
+                    div_lastpage.remove()
                     init();
                 });
-                document.body.appendChild(btn_reco)
-                let compteur_partie_nbr = document.createElement("counter")
-                compteur_partie_nbr.innerText = compteur_partie.toString()               
-                document.body.appendChild(compteur_partie_nbr)
-                console.log("gagnée")
 
                 let compteur_nbr_coup = document.createElement("counter")
-                compteur_nbr_coup.innerText = " Votre nombre de coups-" + compteur_coup.toString()
+                compteur_nbr_coup.innerText = "Nombre de coups: " + compteur_coup.toString()
+                compteur_nbr_coup.classList.add('cpt_class')
                 document.body.appendChild(compteur_nbr_coup)
+                let compteur_partie_nbr = document.createElement("counter")
+                compteur_partie_nbr.innerText = "Nombre de coups: " + compteur_partie.toString()               
+                compteur_partie_nbr.classList.add('cptpartie_class')
+                document.body.appendChild(compteur_partie_nbr)
+
+                let div_lastpage = document.createElement("div")
+                body.appendChild(div_lastpage)
+                div_lastpage.appendChild(compteur_nbr_coup)
+                div_lastpage.appendChild(compteur_partie_nbr)
+                div_lastpage.appendChild(btn_reco)
+                div_lastpage.classList.add('orga_lastpage')
+                
+                
+                console.log("gagnée")
+
             }
         })
     })
