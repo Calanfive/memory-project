@@ -1,13 +1,27 @@
 const btnStart = document.querySelector("#start_button") as HTMLButtonElement;
 let compteur_partie = 0
 let compteur_coup = 0
+let totalSeconds = 0
 let lastClickedColor = "";
 let lastClicked: HTMLDivElement;
 const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
 
 btnStart.addEventListener("click", () => {
     init();
+    countUpTimer()
 });
+
+
+let timer_horlorge = document.createElement("p")
+timer_horlorge.classList.add("horlorge")
+let timerVariable = setInterval(countUpTimer, 1000);
+ function countUpTimer() {
+    ++totalSeconds;
+    let hour = Math.floor(totalSeconds / 3600);
+    let minute = Math.floor((totalSeconds - hour * 3600) / 60);
+    let seconds = totalSeconds - (hour * 3600 + minute * 60);
+    timer_horlorge.innerText = hour + ":" + minute + ":" + seconds;
+}
 
 function init(){
     console.log('start')
@@ -47,7 +61,6 @@ function init(){
         carte.addEventListener("click", () => {//pour chaque action sur une carte
             console.log("tata", lastClickedColor)
             console.log(carte.getAttribute("color"))
-            // lastClickedColor = carte.getAttribute("color")
             carte.classList.toggle("cachee")
             carte.classList.add("tourner")
 
@@ -76,7 +89,9 @@ function init(){
 
             if (i.length === 16) {//problème avec le nombre de tiles (16) §
                 parent.remove();
+                clearTimeout(timerVariable);
                 compteur_partie++
+                
                 const btn_reco = document.createElement("button") //système du bouton recommencer
                 btn_reco.innerText = "PLAY AGAIN"
                 btn_reco.classList.add('btn_reco_class')
@@ -92,14 +107,14 @@ function init(){
                 let compteur_nbr_coup = document.createElement("counter")
                 compteur_nbr_coup.innerText = "Nombre de coups: " + compteur_coup.toString()
                 compteur_nbr_coup.classList.add('cpt_class')
-                document.body.appendChild(compteur_nbr_coup)
+
                 let compteur_partie_nbr = document.createElement("counter")
-                compteur_partie_nbr.innerText = "Nombre de coups: " + compteur_partie.toString()               
+                compteur_partie_nbr.innerText = "Nombre de parties: " + compteur_partie.toString()               
                 compteur_partie_nbr.classList.add('cptpartie_class')
-                document.body.appendChild(compteur_partie_nbr)
 
                 let div_lastpage = document.createElement("div")
                 body.appendChild(div_lastpage)
+                div_lastpage.appendChild(timer_horlorge)
                 div_lastpage.appendChild(compteur_nbr_coup)
                 div_lastpage.appendChild(compteur_partie_nbr)
                 div_lastpage.appendChild(btn_reco)
