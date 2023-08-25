@@ -2,30 +2,52 @@ const btnStart = document.querySelector("#start_button") as HTMLButtonElement;
 let compteur_partie = 0
 let compteur_coup = 0
 let totalSeconds = 0
-let lastClickedColor = "";
-let lastClicked: HTMLDivElement;
+// let lastClickedColor = "";
+// let lastClicked: HTMLDivElement;
 const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
 const anim_win = document.querySelector('.anim_class') as HTMLHtmlElement
 anim_win.remove();
 
 btnStart.addEventListener("click", () => {
     init();
-    countUpTimer()
+    
 });
-
 
 let timer_horlorge = document.createElement("p")
 timer_horlorge.classList.add("horlorge")
-let timerVariable = setInterval(countUpTimer, 1000);
- function countUpTimer() {
+
+
+
+function init_timer() {
+
+//     // countUpTimer_2()
+// function countUpTimer_2() {
+
+// const start = setInterval("");
+// console.log('start');
+
+// setTimeout(() => {
+//   const millis = Date.now() - start;
+//   console.log(`seconds elapsed = ${Math.floor(millis / 1000)}`);
+// }, 1000);
+
+// }
+
+    countUpTimer()
+
+}
+
+function countUpTimer() {
     ++totalSeconds;
     let hour = Math.floor(totalSeconds / 3600);
     let minute = Math.floor((totalSeconds - hour * 3600) / 60);
     let seconds = totalSeconds - (hour * 3600 + minute * 60);
     timer_horlorge.innerText = hour + ":" + minute + ":" + seconds;
-}
+}  
 
 function init(){
+    let timerVariable = setInterval(init_timer, 1000);
+    init_timer()
     console.log('start')
     btnStart.remove();
     
@@ -50,8 +72,10 @@ function init(){
 
     const parent = document.createElement('div')
     parent.classList.add('section_tiles')
+    
 
     const body = document.querySelector("body") as HTMLBodyElement
+    body.appendChild(timer_horlorge)
     body.appendChild(parent)
     // tiles.sort( () => Math.random() - 0.5)
     tiles.forEach( tile => parent.appendChild(tile))
@@ -62,8 +86,8 @@ function init(){
     elements.forEach( (carte) => {
         
         carte.addEventListener("click", () => {//pour chaque action sur une carte
-            console.log("tata", lastClickedColor)
-            console.log(carte.getAttribute("color"))
+            // console.log("tata", lastClickedColor)
+            // console.log(carte.getAttribute("color"))
             carte.classList.toggle("cachee")
             carte.classList.add("tourner")
 
@@ -92,7 +116,7 @@ function init(){
 
             if (i.length === 16) {//problème avec le nombre de tiles (16) §
                 parent.remove();
-                clearTimeout(timerVariable);
+                clearInterval(timerVariable)
                 compteur_partie++
                 
                 const btn_reco = document.createElement("button") //système du bouton recommencer
@@ -100,6 +124,9 @@ function init(){
                 btn_reco.classList.add('btn_reco_class')
                 btn_reco.addEventListener("click", () => {
                     btn_reco.remove();
+                    totalSeconds = -1
+                    timer_horlorge.remove();
+                    init_timer();
                     compteur_nbr_coup.remove();
                     compteur_coup = 0
                     compteur_partie_nbr.remove();
@@ -125,7 +152,6 @@ function init(){
                 div_lastpage.appendChild(compteur_partie_nbr)
                 div_lastpage.appendChild(btn_reco)
                 div_lastpage.classList.add('orga_lastpage')
-                
                 
                 console.log("gagnée")
 
