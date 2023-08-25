@@ -4,6 +4,8 @@ let compteur_coup = 0
 let lastClickedColor = "";
 let lastClicked: HTMLDivElement;
 const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
+const anim_win = document.querySelector('.anim_class') as HTMLHtmlElement
+anim_win.remove();
 
 btnStart.addEventListener("click", () => {
     init();
@@ -12,6 +14,7 @@ btnStart.addEventListener("click", () => {
 function init(){
     console.log('start')
     btnStart.remove();
+    
 
     let tiles: HTMLDivElement[] = []
     for (let i = 0; i < 16; i++) {
@@ -40,7 +43,7 @@ function init(){
     tiles.forEach( tile => parent.appendChild(tile))
 
     let nodeList = document.querySelectorAll(".tile");//création de variable
-    let elements = Array.from(nodeList) as HTMLDivElement[]; //jsp ce que c'est Array.from §
+    let elements = Array.from(nodeList) as HTMLDivElement[];
     
     elements.forEach( (carte) => {
         
@@ -89,17 +92,19 @@ function init(){
                     init();
                 });
 
+
                 let compteur_nbr_coup = document.createElement("counter")
                 compteur_nbr_coup.innerText = "Nombre de coups: " + compteur_coup.toString()
                 compteur_nbr_coup.classList.add('cpt_class')
-                document.body.appendChild(compteur_nbr_coup)
+
                 let compteur_partie_nbr = document.createElement("counter")
                 compteur_partie_nbr.innerText = "Nombre de coups: " + compteur_partie.toString()               
                 compteur_partie_nbr.classList.add('cptpartie_class')
-                document.body.appendChild(compteur_partie_nbr)
+
 
                 let div_lastpage = document.createElement("div")
                 body.appendChild(div_lastpage)
+                div_lastpage.appendChild(anim_win)
                 div_lastpage.appendChild(compteur_nbr_coup)
                 div_lastpage.appendChild(compteur_partie_nbr)
                 div_lastpage.appendChild(btn_reco)

@@ -2,8 +2,8 @@ body{
   margin: 0px;
   height: 100%;
   width: 100%;
-  overflow: hidden;
   background-color: #C3CAFF;
+  overflow: hidden;
 }
 
 #barre-sup{
@@ -92,6 +92,32 @@ h1{
   background-color: #4956BC;
 }
 
+.orga_lastpage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 70px;
+  height: 350px;
+}
+
+.anim_class {
+  color: #4956BC;
+  display: flex;
+  justify-content: center;
+  font-family: impact, fantasy;
+  font-size: 80px;
+  -webkit-text-stroke: 1px white;
+  position: relative;
+  animation: MyDiv 800ms 100 ease alternate;
+  margin: 0;
+  }
+  
+  @keyframes MyDiv {
+    0%   {left: -100px; top: 0px;}
+    100%  {left: 100px; top: 0px;}
+  }
+
 .btn_reco_class{
   border: #4956BC solid 5px;
   border-radius: 100px;
@@ -107,13 +133,4 @@ h1{
 
 .cpt_class{
   color: #4956BC
-}
-
-.orga_lastpage{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-top: 90px;
-  height: 250px;
 }
