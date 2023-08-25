@@ -134,3 +134,16 @@ h1{
 .cpt_class{
   color: #4956BC
 }
+
+.horlorge{
+  color: #4956BC
+}
+
+.orga_lastpage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 90px;
+  height: 250px;
+}
